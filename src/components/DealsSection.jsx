@@ -8,7 +8,8 @@ import PromoBanner from "./PromoBanner";
 
 export default function DealsSection() {
   return (
-    <section className="px-20  mx-auto">
+    <section className="px-20  mx-auto mt-[80px]">
+      <h4 className="text-[#515751] text-sm font-medium">FIND YOUR deals</h4>
       <h2 className="text-2xl font-bold mb-4">Weekday Deals</h2>
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Left banner */}

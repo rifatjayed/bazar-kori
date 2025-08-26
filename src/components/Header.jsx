@@ -7,9 +7,9 @@ import { BiCategory } from "react-icons/bi";
 
 const Header = () => {
   return (
-    <div className="flex justify-between items-center px-[80px]">
+    <div className="flex justify-between items-center px-[80px] py-2">
       <div className="flex">
-        <button className="flex justify-between items-center rounded-full w-[223px] bg-[#46AE3D] px-[20px] py-[12px]">
+        <button className="flex justify-between items-center rounded-full w-[223px] bg-[#46AE3D] px-[20px] py-[10px]">
           <span>
             <BiCategory />
           </span>
@@ -21,12 +21,12 @@ const Header = () => {
       </div>
       <div>
         <nav className="nav  flex justify-center items-center gap-7">
-          <a to="/">Home</a>
-          <a to="/products">Products</a>
-          <a to="/contact">Contact Us</a>
+          <Link to="/">Home</Link>
+          <Link to="/products">Products</Link>
+          <Link to="/contact">Contact Us</Link>
         </nav>
       </div>
-      <button className="flex justify-between items-center w-[159px] rounded-full border border-[#E0E0E0] px-[20px] py-[12px]">
+      <button className="flex justify-between items-center w-[159px] rounded-full border border-[#E0E0E0] px-[20px] py-[10px]">
         <span>
           <TbTruckDelivery />
         </span>
