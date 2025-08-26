@@ -34,10 +34,10 @@ const Footer = () => {
             <FaEnvelope className="text-green-600 mr-2" />
             <span className="font-semibold">Email:</span> info@e-commerce.com
           </div>
-          <div className="text-sm text-gray-600 flex items-center ">
+          <div className="text-sm text-gray-600 flex  ">
             <FaMapMarkerAlt className="text-green-600 mr-2" />
             <span className="font-semibold">Address:</span>{" "}
-            <span className=" self-end">
+            <span className=" ">
               Carrer Acurio, 14E, 17320, Tossa de Mar, Girona
             </span>
           </div>

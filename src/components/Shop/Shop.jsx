@@ -1,7 +1,5 @@
-// import React, { useState } from "react";
+// import React, { useState, useMemo } from "react";
 // import { useProducts } from "../context/ProductsProvider";
-// // import ProductGrid from "../products/Products";
-// import ProductCard from "../products/ProductCard";
 
 // const Shop = () => {
 //   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -13,26 +11,16 @@
 
 //   const { products } = useProducts();
 
-//   // ✅ Dummy categories & brands define করে নিন
-//   const categories = [
-//     "Vegetables",
-//     "Fruits",
-//     "Dairy",
-//     "Snacks",
-//     "Beverages",
-//     "Meat",
-//     "Bakery",
-//   ];
+//   // ✅ unique category & brand বের করা
+//   const categories = useMemo(
+//     () => [...new Set(products.map((p) => p.category))],
+//     [products]
+//   );
 
-//   const brands = [
-//     "FreshFarm",
-//     "Nature’s Best",
-//     "HealthyChoice",
-//     "EcoFoods",
-//     "OrganicWorld",
-//     "GreenLeaf",
-//     "DailyFresh",
-//   ];
+//   const brands = useMemo(
+//     () => [...new Set(products.map((p) => p.brand))],
+//     [products]
+//   );
 
 //   const handleReviewChange = (star) => {
 //     setSelectedReviews((prev) =>
@@ -51,21 +39,21 @@
 //       <aside className="w-1/4 bg-white shadow p-4 rounded-lg">
 //         <h2 className="text-lg font-semibold mb-4">Filters</h2>
 
+//         {/* Category Filter */}
 //         <div className="mb-6">
 //           <h3 className="font-medium mb-2">Category</h3>
-
 //           {visibleCategories.map((cat, idx) => (
 //             <label key={idx} className="flex items-center space-x-2 mb-2">
 //               <input
 //                 type="checkbox"
 //                 className="w-4 h-4"
+//                 checked={selectedCategory === cat}
 //                 onChange={() => setSelectedCategory(cat)}
 //               />
 //               <span>{cat}</span>
 //             </label>
 //           ))}
 
-//           {/* See more / See less button */}
 //           {categories.length > 5 && (
 //             <button
 //               onClick={() => setShowAllCategories(!showAllCategories)}
@@ -93,48 +81,7 @@
 //         </div>
 
 //         {/* Review Filter */}
-//         {/* <div>
-//           <h3 className="font-medium mb-2">Review</h3>
-//           {[5, 4, 3, 2, 1].map((star) => (
-//             <label key={star} className="flex items-center space-x-2 mb-2">
-//               <input
-//                 type="checkbox"
-//                 className="w-4 h-4"
-//                 checked={selectedReviews.includes(star)}
-//                 onChange={() => handleReviewChange(star)}
-//               />
-//               <span className="flex text-yellow-500">{"⭐".repeat(star)}</span>
-//             </label>
-//           ))}
-//         </div> */}
-//         {/* <div>
-//           <h3 className="font-medium mb-2">Review</h3>
-//           {[5, 4, 3, 2, 1].map((star) => (
-//             <label
-//               key={star}
-//               className="flex items-center space-x-2 mb-2 cursor-pointer"
-//             >
-//               <input
-//                 type="checkbox"
-//                 className="w-4 h-4"
-//                 checked={selectedReviews.includes(star)}
-//                 onChange={() => handleReviewChange(star)}
-//               />
-//               <span className="flex">
-//                 {Array.from({ length: 5 }).map((_, i) => (
-//                   <span
-//                     key={i}
-//                     className={i < star ? "text-yellow-500" : "text-gray-300"}
-//                   >
-//                     ⭐
-//                   </span>
-//                 ))}
-//               </span>
-//             </label>
-//           ))}
-//         </div> */}
-//         {/* Review Filter */}
-//         <div>
+//         <div className="mb-6">
 //           <h3 className="font-medium mb-2">Review</h3>
 //           {[5, 4, 3, 2, 1].map((rating) => (
 //             <label
@@ -160,21 +107,22 @@
 //             </label>
 //           ))}
 //         </div>
+
+//         {/* Brand Filter */}
 //         <div className="mb-6">
 //           <h3 className="font-medium mb-2">Brand</h3>
-
 //           {visibleBrands.map((brand, idx) => (
 //             <label key={idx} className="flex items-center space-x-2 mb-2">
 //               <input
 //                 type="checkbox"
 //                 className="w-4 h-4"
+//                 checked={selectedBrand === brand}
 //                 onChange={() => setSelectedBrand(brand)}
 //               />
 //               <span>{brand}</span>
 //             </label>
 //           ))}
 
-//           {/* See more / See less button */}
 //           {brands.length > 5 && (
 //             <button
 //               onClick={() => setShowAllBrands(!showAllBrands)}
@@ -190,53 +138,20 @@
 //       <main className="w-3/4">
 //         <h2 className="text-lg font-semibold mb-4">Showing products</h2>
 //         <div className="grid grid-cols-3 gap-6">
-//           {products.map((product, i) => (
-//             // <div
-//             //   key={product.id}
-//             //   className="border rounded-lg p-4 shadow hover:shadow-lg transition"
-//             // >
-//             //   <img
-//             //     src={product.image}
-//             //     alt={product.name}
-//             //     className="w-full h-32 object-cover mb-4"
-//             //   />
-//             //   <h3 className="font-medium">{product.name}</h3>
-//             //   {/* <p className="text-sm text-gray-500 line-through">
-//             //     ${product.originalPrice}
-//             //   </p> */}
-//             //   {product.discountPercentage > 0 && (
-//             //     <p className="text-sm text-gray-500 line-through">
-//             //       ${product.originalPrice}
-//             //     </p>
-//             //   )}
-//             //   <p className="text-lg font-semibold text-green-600">
-//             //     ${product.price}
-//             //   </p>
-//             //   <div className="flex items-center text-yellow-500 text-sm">
-//             //     {"⭐".repeat(product.rating)}
-//             //   </div>
-//             //   <button className="mt-3 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700">
-//             //     Add to Cart
-//             //   </button>
-//             // </div>
+//           {products.map((product) => (
 //             <div
 //               key={product.id}
 //               className="flex flex-col justify-between border rounded-2xl shadow-md hover:shadow-xl transition bg-white p-4 h-full"
 //             >
-//               {/* Product Image */}
 //               <div>
 //                 <img
 //                   src={product.image}
 //                   alt={product.name}
 //                   className="w-full h-40 object-cover rounded-lg mb-4"
 //                 />
-
-//                 {/* Product Title */}
 //                 <h3 className="font-semibold text-lg text-gray-800 mb-2 line-clamp-1">
 //                   {product.name}
 //                 </h3>
-
-//                 {/* Price Section */}
 //                 <div className="mb-2">
 //                   {product.discountPercentage > 0 && (
 //                     <p className="text-sm text-gray-400 line-through">
@@ -247,20 +162,14 @@
 //                     ${product.price}
 //                   </p>
 //                 </div>
-
-//                 {/* Rating */}
 //                 <div className="flex items-center text-yellow-500 text-sm mb-3">
 //                   {"⭐".repeat(product.rating)}
 //                 </div>
 //               </div>
-
-//               {/* Add to Cart Button */}
 //               <button className="w-full bg-green-600 text-white py-2 rounded-xl hover:bg-green-700 transition">
 //                 Add to Cart
 //               </button>
 //             </div>
-
-//             // <ProductCard key={i} {...product}></ProductCard>
 //           ))}
 //         </div>
 //       </main>
@@ -305,6 +214,19 @@ const Shop = () => {
     : categories.slice(0, 5);
   const visibleBrands = showAllBrands ? brands : brands.slice(0, 5);
 
+  // ✅ filter করা products
+  const filteredProducts = products.filter((p) => {
+    const matchCategory = selectedCategory
+      ? p.category === selectedCategory
+      : true;
+    const matchBrand = selectedBrand ? p.brand === selectedBrand : true;
+    const matchPrice = p.price <= price;
+    const matchReview =
+      selectedReviews.length > 0 ? selectedReviews.includes(p.rating) : true;
+
+    return matchCategory && matchBrand && matchPrice && matchReview;
+  });
+
   return (
     <div className="flex gap-6 px-20 py-6">
       {/* Left Filter */}
@@ -320,7 +242,9 @@ const Shop = () => {
                 type="checkbox"
                 className="w-4 h-4"
                 checked={selectedCategory === cat}
-                onChange={() => setSelectedCategory(cat)}
+                onChange={() =>
+                  setSelectedCategory(selectedCategory === cat ? null : cat)
+                }
               />
               <span>{cat}</span>
             </label>
@@ -389,7 +313,9 @@ const Shop = () => {
                 type="checkbox"
                 className="w-4 h-4"
                 checked={selectedBrand === brand}
-                onChange={() => setSelectedBrand(brand)}
+                onChange={() =>
+                  setSelectedBrand(selectedBrand === brand ? null : brand)
+                }
               />
               <span>{brand}</span>
             </label>
@@ -408,9 +334,11 @@ const Shop = () => {
 
       {/* Right Product List */}
       <main className="w-3/4">
-        <h2 className="text-lg font-semibold mb-4">Showing products</h2>
+        <h2 className="text-lg font-semibold mb-4">
+          Showing {filteredProducts.length} products
+        </h2>
         <div className="grid grid-cols-3 gap-6">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <div
               key={product.id}
               className="flex flex-col justify-between border rounded-2xl shadow-md hover:shadow-xl transition bg-white p-4 h-full"
