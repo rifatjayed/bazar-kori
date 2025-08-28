@@ -22,7 +22,7 @@ const Header = () => {
       <div>
         <nav className="nav  flex justify-center items-center gap-7">
           <Link to="/">Home</Link>
-          <Link to="/products">Products</Link>
+          <Link to="/shop">Products</Link>
           <Link to="/contact">Contact Us</Link>
         </nav>
       </div>

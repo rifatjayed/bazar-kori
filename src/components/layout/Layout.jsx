@@ -8,7 +8,7 @@ export default function Layout() {
     <>
       <Topbar></Topbar>
       <Header></Header>
-      <main className="flex flex-col  gap-20">
+      <main className="flex flex-col  ">
         <Outlet />
       </main>
 
