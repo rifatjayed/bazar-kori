@@ -1,42 +1,42 @@
 // import { createContext, useContext, useState } from "react";
-// import productsData from "../data/Products"; // data import
+// import productsData from "../data/Products";
 
-// // Context তৈরি
 // const ProductsContext = createContext();
 
-// // Provider
 // export const ProductsProvider = ({ children }) => {
 //   const [products, setProducts] = useState(productsData[0].products);
-
-//   // ✅ কার্টের জন্য নতুন state যোগ করা হয়েছে
 //   const [cart, setCart] = useState([]);
 
-//   // ✅ কার্টে প্রোডাক্ট যোগ করার ফাংশন
-//   const addToCart = (productToAdd, quantity) => {
+//   // ✅ addToCart ফাংশনটি এখন weight প্যারামিটার গ্রহণ করবে
+//   const addToCart = (productToAdd, quantity, weight) => {
 //     setCart((prevCart) => {
-//       // প্রোডাক্টটি আগে থেকেই কার্টে আছে কিনা তা চেক করা হচ্ছে
+//       // ✅ একটি আইটেম ইউনিক কিনা তা তার ID এবং selectedWeight দিয়ে চেক করা হবে
 //       const existingProduct = prevCart.find(
-//         (item) => item.id === productToAdd.id
+//         (item) => item.id === productToAdd.id && item.selectedWeight === weight
 //       );
 
 //       if (existingProduct) {
-//         // যদি প্রোডাক্টটি আগে থেকেই থাকে, তবে শুধু তার quantity আপডেট হবে
+//         // যদি একই প্রোডাক্ট এবং একই weight আগে থেকেই থাকে, তবে শুধু quantity আপডেট হবে
 //         return prevCart.map((item) =>
-//           item.id === productToAdd.id
+//           item.id === productToAdd.id && item.selectedWeight === weight
 //             ? { ...item, quantity: item.quantity + quantity }
 //             : item
 //         );
 //       } else {
-//         // যদি না থাকে, তবে নতুন প্রোডাক্ট হিসেবে কার্টে যোগ হবে
-//         return [...prevCart, { ...productToAdd, quantity }];
+//         // না থাকলে, নতুন আইটেম হিসেবে কার্টে যোগ হবে এবং selectedWeight সহ যোগ হবে
+//         return [
+//           ...prevCart,
+//           { ...productToAdd, quantity, selectedWeight: weight },
+//         ];
 //       }
 //     });
 
-//     // ব্যবহারকারীকে ফিডব্যাক দেওয়ার জন্য একটি alert
-//     alert(`${quantity} x ${productToAdd.name} has been added to your cart.`);
+//     // ✅ Alert message-টি এখন weight সহ দেখাবে
+//     alert(
+//       `${quantity} x ${productToAdd.name} (${weight}) has been added to your cart.`
+//     );
 //   };
 
-//   // ✅ value অবজেক্টে cart এবং addToCart যোগ করা হয়েছে
 //   const value = {
 //     products,
 //     cart,
@@ -50,7 +50,6 @@
 //   );
 // };
 
-// // custom hook
 // export const useProducts = () => useContext(ProductsContext);
 
 // context/ProductsContext.js
@@ -64,40 +63,60 @@ export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState(productsData[0].products);
   const [cart, setCart] = useState([]);
 
-  // ✅ addToCart ফাংশনটি এখন weight প্যারামিটার গ্রহণ করবে
   const addToCart = (productToAdd, quantity, weight) => {
     setCart((prevCart) => {
-      // ✅ একটি আইটেম ইউনিক কিনা তা তার ID এবং selectedWeight দিয়ে চেক করা হবে
       const existingProduct = prevCart.find(
         (item) => item.id === productToAdd.id && item.selectedWeight === weight
       );
-
       if (existingProduct) {
-        // যদি একই প্রোডাক্ট এবং একই weight আগে থেকেই থাকে, তবে শুধু quantity আপডেট হবে
         return prevCart.map((item) =>
           item.id === productToAdd.id && item.selectedWeight === weight
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       } else {
-        // না থাকলে, নতুন আইটেম হিসেবে কার্টে যোগ হবে এবং selectedWeight সহ যোগ হবে
         return [
           ...prevCart,
           { ...productToAdd, quantity, selectedWeight: weight },
         ];
       }
     });
+    alert(`${quantity} x ${productToAdd.name} (${weight}) has been added.`);
+  };
 
-    // ✅ Alert message-টি এখন weight সহ দেখাবে
-    alert(
-      `${quantity} x ${productToAdd.name} (${weight}) has been added to your cart.`
+  // ✅ আইটেমের পরিমাণ আপডেট করার ফাংশন
+  const updateQuantity = (productId, weight, newQuantity) => {
+    if (newQuantity < 1) return; // পরিমাণ ১ এর কম হতে পারবে না
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === productId && item.selectedWeight === weight
+          ? { ...item, quantity: newQuantity }
+          : item
+      )
     );
+  };
+
+  // ✅ কার্ট থেকে একটি আইটেম সরানোর ফাংশন
+  const removeFromCart = (productId, weight) => {
+    setCart((prevCart) =>
+      prevCart.filter(
+        (item) => !(item.id === productId && item.selectedWeight === weight)
+      )
+    );
+  };
+
+  // ✅ সম্পূর্ণ কার্ট খালি করার ফাংশন
+  const clearCart = () => {
+    setCart([]);
   };
 
   const value = {
     products,
     cart,
     addToCart,
+    updateQuantity, // ✅ নতুন ফাংশন এক্সপোর্ট করা হয়েছে
+    removeFromCart, // ✅ নতুন ফাংশন এক্সপোর্ট করা হয়েছে
+    clearCart, // ✅ নতুন ফাংশন এক্সপোর্ট করা হয়েছে
   };
 
   return (

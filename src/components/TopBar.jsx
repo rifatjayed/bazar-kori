@@ -2,6 +2,7 @@ import { FiSearch, FiHeart, FiShoppingCart } from "react-icons/fi";
 import { FaRegCircleUser } from "react-icons/fa6";
 import logo from "../assets/Frame.png";
 import { useProducts } from "./context/ProductsProvider";
+import { Link } from "react-router-dom";
 
 const Topbar = () => {
   const { cart } = useProducts();
@@ -41,18 +42,18 @@ const Topbar = () => {
             2
           </span>
         </div>
-        <div className="relative cursor-pointer">
-          <FiShoppingCart />
+        <Link to="/cart">
+          <div className="relative cursor-pointer">
+            <FiShoppingCart />
 
-          {totalCartItems > 0 && (
-            <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs w-5 h-5 p-1 rounded-full flex items-center justify-center">
-              {totalCartItems}
-            </span>
-          )}
-          {/* <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
-            3
-          </span> */}
-        </div>
+            {totalCartItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs w-5 h-5 p-1 rounded-full flex items-center justify-center">
+                {totalCartItems}
+              </span>
+            )}
+          </div>
+        </Link>
+
         <div className="flex items-center gap-2 cursor-pointer text-base">
           <FaRegCircleUser className="text-xl" />
 
