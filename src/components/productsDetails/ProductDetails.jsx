@@ -268,6 +268,7 @@
 import React, { useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { BsBookmark } from "react-icons/bs";
+import Service from "../Service";
 import DetailsTabs from "./DetailsTabs";
 import NewsletterSection from "../NewsletterSection/NewsletterSection";
 import { useParams } from "react-router-dom";
@@ -600,6 +601,7 @@ const ProductDetails = () => {
       </div>
 
       <div className="w-full">
+        <Service></Service>
         <NewsletterSection />
       </div>
     </>

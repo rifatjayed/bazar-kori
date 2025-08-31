@@ -12,6 +12,8 @@ import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import Cart from "./components/Cart/Cart";
 import Checkout from "./components/Cart/CheakOut";
+import PaymentPage from "./components/Cart/PaymentPage";
+import OrderComplete from "./components/Cart/OrderComplete";
 
 function App() {
   const router = createBrowserRouter([
@@ -38,6 +40,14 @@ function App() {
         {
           path: "/checkout",
           element: <Checkout></Checkout>,
+        },
+        {
+          path: "/payment",
+          element: <PaymentPage></PaymentPage>,
+        },
+        {
+          path: "/order",
+          element: <OrderComplete></OrderComplete>,
         },
       ],
     },
