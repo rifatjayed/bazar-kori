@@ -14,6 +14,7 @@ import Cart from "./components/Cart/Cart";
 import Checkout from "./components/Cart/CheakOut";
 import PaymentPage from "./components/Cart/PaymentPage";
 import OrderComplete from "./components/Cart/OrderComplete";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -28,6 +29,10 @@ function App() {
         {
           path: "/shop",
           element: <Shop></Shop>,
+        },
+        {
+          path: "/contact",
+          element: <ContactPage></ContactPage>,
         },
         {
           path: "/product/:id",
