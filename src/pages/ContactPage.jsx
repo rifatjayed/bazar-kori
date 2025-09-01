@@ -190,17 +190,22 @@ import { FiPhone, FiMail, FiMapPin } from "react-icons/fi";
 import Service from "../components/Service";
 
 import NewsletterSection from "../components/NewsletterSection/NewsletterSection";
+import Breadcrumb from "../components/Breadcrumb";
 
 const ContactPage = () => {
+  const breadcrumbItems = [
+    { label: "Home", path: "/" },
+    { label: "Contact Us" },
+  ];
   return (
     <>
       <div className="bg-white font-sans">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <div className="mb-8 text-sm text-gray-500">
-            <span>Home</span>
-            <span className="mx-2">&gt;</span>
-            <span className="text-gray-800">Contact Us</span>
+            {/* <span>Home</span>
+            <span className="mx-2">&gt;</span> */}
+            <Breadcrumb items={breadcrumbItems} />
           </div>
 
           {/* Main Section Wrapper with Border */}

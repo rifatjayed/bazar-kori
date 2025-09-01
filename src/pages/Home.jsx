@@ -6,7 +6,7 @@ import ProductGrid from "../components/products/Products";
 import Service from "../components/Service";
 import ShopByBrands from "../components/brands/ShopByBrands";
 import NewsletterSection from "../components/NewsletterSection/NewsletterSection";
-import Recomand from "../components/recomand";
+import Recomand from "../components/Recomand";
 import Hero from "../components/hero/Hero";
 
 const Home = () => {
