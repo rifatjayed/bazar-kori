@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import BrandCard from "./brandCard";
+import BrandCard from "./BrandCard";
 import photo1 from "../../assets/image1 (1).png";
 import photo2 from "../../assets/image1 (2).png";
 import photo3 from "../../assets/image1 (3).png";
