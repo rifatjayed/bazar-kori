@@ -2,30 +2,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useMemo } from "react";
 import { useProducts } from "./context/ProductsProvider";
 
-// const categories = [
-//   "Vegetables",
-//   "Groceries",
-//   "Fish",
-//   "Meat",
-//   "Dairy",
-//   "Drinks",
-//   "Bakery",
-//   "Snacks & Confectionery",
-//   "Fruits",
-//   "Frozen",
-
-//   "Baby Care",
-//   "Personal Care",
-//   "Household Items",
-//   "Cleaning Supplies",
-//   "Pet Supplies",
-//   "Spices & Seasonings",
-//   "Health & Wellness",
-//   "Cooking Essentials",
-//   "Instant Food",
-//   "Beverages",
-// ];
-
 export default function CategoryTabs({ onSelect }) {
   const { products } = useProducts();
   console.log(products);
@@ -69,15 +45,6 @@ export default function CategoryTabs({ onSelect }) {
         className="flex overflow-hidden w-[720px] no-scrollbar"
         style={{ columnGap: "16px" }} // Apply exact gap manually
       >
-        {/* {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => onSelect?.(cat)}
-            className="flex-shrink-0 text-sm whitespace-nowrap text-gray-600 hover:text-green-600 font-medium pb-1 border-b-2 border-transparent hover:border-green-600 transition"
-          >
-            {cat}
-          </button>
-        ))} */}
         {categories.map((cat) => (
           <button
             key={cat}

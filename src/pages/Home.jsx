@@ -16,12 +16,9 @@ const Home = () => {
       <Category></Category>
       <Service></Service>
       {/* <ProductGrid></ProductGrid> */}
-
       <DealsSection></DealsSection>
-
       <Recomand></Recomand>
       <ShopByBrands></ShopByBrands>
-
       <NewsletterSection></NewsletterSection>
     </>
   );
