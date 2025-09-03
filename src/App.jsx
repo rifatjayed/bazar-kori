@@ -15,6 +15,7 @@ import Checkout from "./components/Cart/CheakOut";
 import PaymentPage from "./components/Cart/PaymentPage";
 import OrderComplete from "./components/Cart/OrderComplete";
 import ContactPage from "./pages/ContactPage";
+import SignUpForm from "./pages/SignUp";
 
 function App() {
   const router = createBrowserRouter([
@@ -33,6 +34,10 @@ function App() {
         {
           path: "/contact",
           element: <ContactPage></ContactPage>,
+        },
+        {
+          path: "/signup",
+          element: <SignUpForm></SignUpForm>,
         },
         {
           path: "/product/:id",
