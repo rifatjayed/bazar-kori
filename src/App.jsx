@@ -120,7 +120,7 @@ import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import Shop from "./components/Shop/Shop";
 import ContactPage from "./pages/ContactPage";
-import SignUpForm from "./pages/SignUp";
+import SignUpForm from "./pages/signin/SignUpForm";
 import ProductDetails from "./components/productsDetails/ProductDetails";
 import Cart from "./components/Cart/Cart";
 import Checkout from "./components/Cart/CheakOut";
@@ -134,6 +134,8 @@ import Address from "./components/dashboard/Address";
 import DashboardLayout from "./components/dashboard/DashboardLayout";
 import Order from "./components/dashboard/Order";
 import AddressPage from "./components/dashboard/AddressPage";
+import SignInForm from "./pages/signin/SignInForm";
+import ForgotPassword from "./pages/signin/ForgotPassword";
 
 function App() {
   const router = createBrowserRouter([
@@ -150,7 +152,8 @@ function App() {
         { path: "/checkout", element: <Checkout /> },
         { path: "/payment", element: <PaymentPage /> },
         { path: "/order", element: <OrderComplete /> },
-
+        { path: "/signIn", element: <SignInForm /> },
+        { path: "/forgotPassword", element: <ForgotPassword /> },
         // 👉 Dashboard routes (nested)
         {
           path: "/dashboard",
