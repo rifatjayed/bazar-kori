@@ -136,6 +136,7 @@ import Order from "./components/dashboard/Order";
 import AddressPage from "./components/dashboard/AddressPage";
 import SignInForm from "./pages/signin/SignInForm";
 import ForgotPassword from "./pages/signin/ForgotPassword";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -145,6 +146,7 @@ function App() {
       children: [
         { path: "/", element: <Home /> },
         { path: "/shop", element: <Shop /> },
+        { path: "/aboutPage", element: <AboutPage /> },
         { path: "/contact", element: <ContactPage /> },
         { path: "/signup", element: <SignUpForm /> },
         { path: "/product/:id", element: <ProductDetails /> },
